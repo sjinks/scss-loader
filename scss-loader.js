@@ -32,13 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 
 		let compiledCallback = (compiled) => {
-			if (compiled.text) {
+			if ('text' in compiled) {
 				let style   = d.createElement('style');
 				let content = d.createTextNode(compiled.text);
 				style.setAttribute('type', 'text/css');
 				style.appendChild(content);
 				h.appendChild(style);
 				current = null;
+			}
+			else if ('formatted' in compiled) {
+				console.error(compiled.formatted);
 			}
 		};
 
@@ -52,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (response.ok) {
 						return response.text();
 					}
-		
+
 					throw new Error('Error loading ' + e.href);
 				}).then((text) => {
 					current = e.href;
