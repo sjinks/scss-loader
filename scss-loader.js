@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					file = '_' + file;
 				}
 			}
-			else if (!/\/([^/]+$)/.test(file)) {
+			else if (/\/([^/]+$)/.test(file)) {
 				file = file.replace(/\/([^/]+)$/, '/_$1');
 			}
 
